@@ -23,6 +23,7 @@ import (
 const signMask uint64 = 0x8000000000000000
 
 // EncodeIntToCmpUint make int v to comparable uint type
+// EncodeIntToCmpUint make int v 到可比较的 uint 类型
 func EncodeIntToCmpUint(v int64) uint64 {
 	return uint64(v) ^ signMask
 }
@@ -33,7 +34,9 @@ func DecodeCmpUintToInt(u uint64) int64 {
 }
 
 // EncodeInt appends the encoded value to slice b and returns the appended slice.
+// EncodeInt 将编码值追加到切片 B 并返回追加的切片
 // EncodeInt guarantees that the encoded value is in ascending order for comparison.
+// EncodeInt 保证编码值按升序进行比较
 func EncodeInt(b []byte, v int64) []byte {
 	var data [8]byte
 	u := EncodeIntToCmpUint(v)
@@ -42,7 +45,9 @@ func EncodeInt(b []byte, v int64) []byte {
 }
 
 // EncodeIntDesc appends the encoded value to slice b and returns the appended slice.
+// EncodeIntDesc 将编码值追加到切片 b 并返回追加的切片
 // EncodeIntDesc guarantees that the encoded value is in descending order for comparison.
+// EncodeIntDesc 保证编码值按降序进行比较。
 func EncodeIntDesc(b []byte, v int64) []byte {
 	var data [8]byte
 	u := EncodeIntToCmpUint(v)
